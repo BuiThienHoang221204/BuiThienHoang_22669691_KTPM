@@ -3,6 +3,7 @@ import { createContentService } from './core/contentService.js';
 import { createDashboardService } from './core/dashboardService.js';
 import { createDataAccess } from './data/createDataAccess.js';
 import { createMariaDbClient } from './data/mariaDbClient.js';
+import { createMemoryClient } from './data/memoryClient.js';
 import { createHookBus } from './extension/hookBus.js';
 import { builtinPlugins } from './plugins/builtinPlugins.js';
 import { createPluginManager } from './plugins/pluginManager.js';
@@ -24,7 +25,10 @@ function readConfig() {
 export async function createKernel() {
   const config = readConfig();
   const hooks = createHookBus();
-  const client = await createMariaDbClient(config.database);
+  // Create a DB client: MariaDB when enabled, otherwise use the in-memory client.
+  const client = config.database.enabled
+    ? await createMariaDbClient(config.database)
+    : await createMemoryClient(config.database);
   const dataAccess = createDataAccess({ client });
 
   const services = {};
