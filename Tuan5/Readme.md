@@ -1,4 +1,4 @@
-#Bài 2: Các Chiến Lược Phân Mảnh Dữ Liệu (Database Partitioning Strategies)
+# Bài 2: Các Chiến Lược Phân Mảnh Dữ Liệu (Database Partitioning Strategies)
 
 Trong thiết kế hệ thống lớn, việc quản lý một bảng dữ liệu khổng lồ trong duy nhất một kho lưu trữ thường dẫn đến nghẽn cổ chai. Phân mảnh (Partitioning) là giải pháp chia nhỏ dữ liệu để tối ưu hiệu suất và khả năng mở rộng.
 
